@@ -3,11 +3,13 @@
 This project to measure the volume of boxes. 
 Appliance designed for automation of warehouse. To implement it, I used:
 - RaspberryPi.
-- HC-SR04 sensor - 3 pcs.
+- [HC-SR04 sensor](http://www.micropik.com/PDF/HCSR04.pdf) - 3 pcs.
 - Piezo element.
 - Power plug.
 - Power switch button.
 - Led.
+- Resistor 4.7kΩ - 3 pcs.
+- Resistor 10kΩ -3 pcs.
 - One europallet.
 
 | HC-SR04   | GPIO/PIN  |
@@ -19,7 +21,11 @@ Appliance designed for automation of warehouse. To implement it, I used:
 | Trigger Z | 23/16     |
 | Echo Z    | 24/18     |
 
-![alt text](https://github.com/jezman/box_demension/blob/master/img_proj.jpg "Breadboard")
+---
+The ECHO output is of 5v. The input pin of Raspberry Pi GPIO is rated at 3.3v. So 5v cannot be directly given to the unprotected 3.3v input pin. Therefore we use a voltage divider circuit using appropriate resistors to bring down the voltage to 3.3V.
+
+##Breadboard
+![alt text](https://github.com/jezman/box_demension/blob/master/breadboard.jpg "Breadboard")
 
 
 
@@ -31,7 +37,7 @@ The script is triggered when you receive a GET request. In response, it sends th
 ```bash
 $ sudo apt-get update && sudo apt-get install python-dev python-rpi.gpio
 ```
-####dimension.py
+##dimension.py
 
 Configure GPIO
 ```python
