@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
- 
+#include "buzzer.h" 
+
 static int ping(TRIG, ECHO, DEF_RANGE) {
 	long ping      = 0;
 	long pong      = 0;
