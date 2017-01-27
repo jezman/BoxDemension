@@ -1,6 +1,6 @@
 hc-rs04: hc-sr04.c fcgi.cpp
-		gcc -lwiringPi -o hc-sr04 hc-sr04.c
-		g++ -lfcgi++ -lfcgi -o fcgi fcgi.cpp
+		gcc -lwiringPi -o hc-sr04 src/hc-sr04.c
+		g++ -lfcgi++ -lfcgi -o fcgi src/fcgi.cpp
 install:
 		cp fcgi /usr/bin/fcgi
 		cp hc-sr04 /usr/bin/hc-sr04

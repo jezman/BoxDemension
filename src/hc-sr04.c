@@ -4,19 +4,6 @@
 #include <stdlib.h>
 #include <stdint.h>
  
-int buzzer() {
-	pinMode(BEEP, OUTPUT);
-	int timer = 200;
-	while(timer != 0) {
-		digitalWrite(BEEP, HIGH);
-		delayMicroseconds(200);
-		digitalWrite(BEEP, LOW);
-		delayMicroseconds(200);
-		timer--;
-	}
-return 0;
-}
-
 static int ping(TRIG, ECHO, DEF_RANGE) {
 	long ping      = 0;
 	long pong      = 0;
@@ -43,7 +30,7 @@ static int ping(TRIG, ECHO, DEF_RANGE) {
 		// Cancel on timeout.
 		if (micros() > timeout) {
 			printf("0\n");
-			buzzer();
+			buzzer(1);
 			return 0;
 		}
 	}
@@ -67,12 +54,12 @@ int main () {
 
 	if (wiringPiSetup () == -1) {
 		exit(EXIT_FAILURE);
-	        buzzer();
+	        buzzer(1);
         }
 
 	if (setuid(getuid()) < 0) {
 		perror("Dropping privileges failed.\n");
-	        buzzer();
+	        buzzer(1);
 		exit(EXIT_FAILURE);
 	}
 
@@ -84,6 +71,6 @@ int main () {
 	ping(TRIG[0], ECHO[0], DEF_RANGE[0]);
 	ping(TRIG[1], ECHO[1], DEF_RANGE[1]);
 	ping(TRIG[2], ECHO[2], DEF_RANGE[2]);
-	buzzer();
+	buzzer(1);
 	return 0;
 }
