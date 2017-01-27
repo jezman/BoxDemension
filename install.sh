@@ -126,17 +126,7 @@ sed -i -e 's/ServerActive=127.0.0.1/ServerActive=127.0.0.1/g' $zabbix_agent_conf
 
 # Download source for hc-sr04
 git clone https://github.com/jezman/BoxDemension.git
+# Install
 cd BoxDemention
-gcc hc-sr04.c -lwiringPi -o /usr/bin/hc-sr04
-g++ fcgi.cpp -lfcgi++ -lfcgi -o /usr/bin/fcgi
-
-# Startup app
-echo "spawn-fcgi -p 8000 -n fcgi&" > /etc/init.d/fcgi
-
-# Add task in crontab
-cat <(crontab -l) <(echo "SHELL=/bin/sh") | crontab -
-cat <(crontab -l) <(echo "PATH=/bin:/usr/bin") | crontab -
-cat <(crontab -l) <(echo "0-59 * * * * [[ -n $(pidof fcgi) ]] || sudo spawn-fcgi -p 8000 -n fcgi&") | crontab -
-
-# Set permission
-chmod 700 /usr/bin/hc-sr04 /usr/bin/fcgi /etc/init.d/fcgi
+make
+make install

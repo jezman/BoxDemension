@@ -17,8 +17,7 @@ int buzzer() {
 return 0;
 }
 
-static int ping(TRIG, ECHO, DEF_RANGE)
-{
+static int ping(TRIG, ECHO, DEF_RANGE) {
 	long ping      = 0;
 	long pong      = 0;
 	float distance = 0;
@@ -37,29 +36,22 @@ static int ping(TRIG, ECHO, DEF_RANGE)
 	digitalWrite(TRIG, LOW);
 
 	// Wait for ping response, or timeout.
-	while (digitalRead(ECHO) == LOW && micros() < timeout) {
+  int response(SET) {
+		while (digitalRead(ECHO) == SET && micros() < timeout) {
+		}
+
+		// Cancel on timeout.
+		if (micros() > timeout) {
+			printf("0\n");
+			buzzer();
+			return 0;
+		}
 	}
 
-	// Cancel on timeout.
-	if (micros() > timeout) {
-		printf("0\n");
-		buzzer();
-		return 0;
-	}
-
+	response(LOW);
 	ping = micros();
 
-	// Wait for pong response, or timeout.
-	while (digitalRead(ECHO) == HIGH && micros() < timeout) {
-	}
-
-	// Cancel on timeout.
-	if (micros() > timeout) {
-		printf("0\n");
-		buzzer();
-		return 0;
-	}
-
+  response(HIGH);
 	pong = micros();
 
 	// Convert ping duration to distance.
