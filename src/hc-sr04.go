@@ -10,6 +10,14 @@ import (
 )
 
 func checkRange(Trig, Echo, DefaultRange uint8) float64 {
+	// Open and map memory to access gpio, check for errors
+	if err := rpio.Open(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	// Unmap gpio memory when done
+	defer rpio.Close()
+
 	trig := rpio.Pin(Trig)
 	echo := rpio.Pin(Echo)
 
@@ -49,13 +57,6 @@ func results(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// Open and map memory to access gpio, check for errors
-	if err := rpio.Open(); err != nil {
-		fmt.Println(err)
-		os.Exit(1)
-	}
-	// Unmap gpio memory when done
-	defer rpio.Close()
 
 	http.HandleFunc("/", results)
 	http.ListenAndServe(":3000", nil)
