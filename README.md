@@ -25,7 +25,7 @@ Appliance designed for automation of warehouse. To implement it, I used:
 The ECHO output is of 5v. The input pin of Raspberry Pi GPIO is rated at 3.3v. So 5v cannot be directly given to the unprotected 3.3v input pin. Therefore we use a voltage divider circuit using appropriate resistors to bring down the voltage to 3.3V.
 
 ## Breadboard
-![alt text](https://github.com/jezman/box_demension/blob/master/breadboard.jpg "Breadboard")
+![alt text](https://rawgit.com/jezman/box-demension/master/breadboard.jpg "Breadboard")
 
 
 
