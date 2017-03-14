@@ -24,17 +24,11 @@ Appliance designed for automation of warehouse. To implement it, I used:
 ---
 The ECHO output is of 5v. The input pin of Raspberry Pi GPIO is rated at 3.3v. So 5v cannot be directly given to the unprotected 3.3v input pin. Therefore we use a voltage divider circuit using appropriate resistors to bring down the voltage to 3.3V.
 
-##Breadboard
+## Breadboard
 ![alt text](https://github.com/jezman/box_demension/blob/master/breadboard.jpg "Breadboard")
 
 
 
-###How it works:
+### How it works:
 Sensors attached to the pallet on the axes XYZ. 
 The script is triggered when you receive a GET request. In response, it sends the size of the box.
-
-###Install the packages to work with GPIO.
-```bash
-$ git clone https://github.com/jezman/BoxDemension.git
-$ sudo bash install.sh
-```
